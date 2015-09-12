@@ -26,6 +26,9 @@
 #
 
 class User < ActiveRecord::Base
+
+  has_many :user_activities
+  has_many :activities, through: :user_activities
   # Use friendly_id on Users
   extend FriendlyId
   friendly_id :friendify, use: :slugged
@@ -38,7 +41,7 @@ class User < ActiveRecord::Base
       "#{username}"
     end
   end
-  
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

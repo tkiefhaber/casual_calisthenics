@@ -34,17 +34,17 @@
 #
 
 CasualCalisthenics::Application.routes.draw do
+  resources :activities
+  resources :users
   root "pages#home"
   get "home", to: "pages#home", as: "home"
   get "inside", to: "pages#inside", as: "inside"
-  
-  
+  post "add_activity", to: "users#add_activity", as: "add_activity"
   devise_for :users
 
   namespace :admin do
     root "base#index"
     resources :users
-    
   end
 
 end
